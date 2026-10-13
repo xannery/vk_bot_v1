@@ -1,7 +1,16 @@
-TOKEN = "vk1.a.6nX_BfJxgYgge2hMqHhYwi8FHoUGVR815k5XCtduwPmvzM8z0Sr_4Jg9-mUu7xMR8uTX1QScI4xMPIheM5GvS3_jNzeBC1eGS58HsYTgnZJbX69_0zxnBqx5CPukbd6ZcKysqeMmh-yfsHfegwhWQ4ujlVEJ3cpehuoyjbo42y5fIe3grHOjGVb4PMouYy-94GytxBKeDnkznWlL90oC9w"
-GROUP_ID = 239446184
+import os
+from dotenv import load_dotenv
 
-CREDENTIALS_FILE = "credentials.json"
-SPREADSHEET_ID = "1reoD2R91WCXr1u4bhjDmPIE326KYQvsjuNykVeb0Utk"
+load_dotenv()
 
-ADMINS = [392881949]
+# VK
+TOKEN = os.getenv("VK_TOKEN", "")
+GROUP_ID = int(os.getenv("GROUP_ID", "0"))
+
+# Google Sheets
+CREDENTIALS_FILE = os.getenv("CREDENTIALS_FILE", "credentials.json")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID", "")
+
+# Админы (VK user ids)
+_admins_raw = os.getenv("ADMINS", "")
+ADMINS = [int(x.strip()) for x in _admins_raw.split(",") if x.strip().isdigit()]
